@@ -7,7 +7,18 @@ import time
 
 graph = {
     "Disaneng": ["Mahikeng", "Madibogo"],
-
+    "Mahikeng": ["Disaneng", "Mmabatho", "Slurry", "Bakerville", "Madibogo"],
+    "Mmabatho": ["Mahikeng", "Slurry"],
+    "Slurry": ["Mahikeng", "Mmabatho", "Zeerust", "Groot Marico", "Bakerville"],
+    "Zeerust": ["Slurry", "Groot Marico"],
+    "Groot Marico": ["Slurry", "Zeerust"],
+    "Bakerville": ["Mahikeng", "Slurry", "Lichtenburg"],
+    "Lichtenburg": ["Bakerville", "Coligny"],
+    "Coligny": ["Lichtenburg", "Ottosdal"],
+    "Ottosdal": ["Coligny", "Sannieshof"],
+    "Sannieshof": ["Ottosdal", "Delareyville", "Madibogo"],
+    "Delareyville": ["Sannieshof"],
+    "Madibogo": ["Disaneng", "Mahikeng", "Sannieshof"]
 }
 
 
@@ -35,10 +46,22 @@ weights = {
 
 
 # 3. Heuristic to goal = Coligny
-# add the heuristics here 
+# add the heuristics here (using traffic values as heuristic)
 
 heuristic = {
-
+    "Disaneng": 70,
+    "Mahikeng": 50,
+    "Mmabatho": 55,
+    "Slurry": 45,
+    "Zeerust": 65,
+    "Groot Marico": 75,
+    "Bakerville": 30,
+    "Lichtenburg": 20,
+    "Coligny": 0,
+    "Ottosdal": 25,
+    "Sannieshof": 40,
+    "Delareyville": 55,
+    "Madibogo": 60
 }
 
 
@@ -98,6 +121,6 @@ def astar(graph, weights, heuristic, start, goal):
 # 6. Run
 
 start = "Disaneng"
-goal = " "
+goal = "Coligny"
 
 path, visited_order, total_cost = astar(graph, weights, heuristic, start, goal)
